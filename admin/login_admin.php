@@ -1,14 +1,27 @@
 <?php
+session_start();
 include '../config/database.php';
+
+// Jika sudah login, redirect ke dashboard
+if (isset($_SESSION['id_admin'])) {
+    header("Location: dashboard.php");
+    exit();
+}
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $query = "SELECT * FROM admin WHERE username = '$username'";
-    $result = mysqli_query($conn, $query);
+    $query = "SELECT * FROM admin WHERE username = ?";
+    $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmt, "s", $username);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
     $admin = mysqli_fetch_assoc($result);
     if ($admin && password_verify($password, $admin['password'])) {
         $_SESSION['id_admin'] = $admin['id_admin'];
+        $_SESSION['username'] = $admin['username'];
         header("Location: dashboard.php");
+        exit();
     } else {
         echo "<p class='text-red-500'>Username atau password salah!</p>";
     }

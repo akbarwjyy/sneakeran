@@ -1,7 +1,11 @@
 <?php
+session_start();
 include '../config/database.php';
+
+// Cek jika admin belum login
 if (!isset($_SESSION['id_admin'])) {
     header("Location: login_admin.php");
+    exit();
 }
 ?>
 <?php include '../layouts/header.php'; ?>
