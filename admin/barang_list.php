@@ -13,9 +13,9 @@ include '../layouts/header.php';
 
 <div class="container mx-auto px-4 py-8">
     <div class="flex justify-between items-center mb-6">
-        <h1 class="text-2xl font-bold">Daftar Sepatu</h1>
+        <h1 class="text-2xl font-bold">Daftar Barang</h1>
         <a href="barang_tambah.php" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">
-            Tambah Sepatu
+            Tambah Barang
         </a>
     </div>
 
@@ -46,24 +46,38 @@ include '../layouts/header.php';
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                     <?php
-                    $query = "SELECT * FROM sepatu ORDER BY id_sepatu DESC";
+                    $query = "SELECT * FROM barang ORDER BY id_barang DESC";
                     $result = mysqli_query($conn, $query);
 
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo "<tr>";
-                        echo "<td class='px-6 py-4 whitespace-nowrap'>";
-                        echo "<img src='../assets/img/" . htmlspecialchars($row['gambar']) . "' alt='" . htmlspecialchars($row['nama_sepatu']) . "' class='w-20 h-20 object-cover rounded'>";
-                        echo "</td>";
-                        echo "<td class='px-6 py-4 whitespace-nowrap'>" . htmlspecialchars($row['nama_sepatu']) . "</td>";
-                        echo "<td class='px-6 py-4 whitespace-nowrap'>Rp " . number_format($row['harga'], 0, ',', '.') . "</td>";
-                        echo "<td class='px-6 py-4 whitespace-nowrap'>" . htmlspecialchars($row['stok']) . "</td>";
-                        echo "<td class='px-6 py-4'><div class='truncate max-w-xs'>" . htmlspecialchars($row['deskripsi']) . "</div></td>";
-                        echo "<td class='px-6 py-4 whitespace-nowrap'>";
-                        echo "<a href='barang_edit.php?id=" . $row['id_sepatu'] . "' class='text-blue-600 hover:text-blue-900 mr-3'>Edit</a>";
-                        echo "<a href='barang_hapus.php?id=" . $row['id_sepatu'] . "' class='text-red-600 hover:text-red-900' onclick='return confirm(\"Apakah Anda yakin ingin menghapus sepatu ini?\")'>Hapus</a>";
-                        echo "</td>";
-                        echo "</tr>";
-                    }
+                    if (!$result) {
+                        echo "<tr><td colspan='6' class='px-6 py-4 text-center text-red-500'>Error: " . mysqli_error($conn) . "</td></tr>";
+                    } else 
+                        if (mysqli_num_rows($result) == 0) {
+                        echo "<tr><td colspan='6' class='px-6 py-4 text-center'>Belum ada data barang</td></tr>";
+                    } else
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            echo "<tr class='hover:bg-gray-50'>";
+                            echo "<td class='px-6 py-4 whitespace-nowrap'>";
+                            if ($row['gambar'] && file_exists("../assets/img/" . $row['gambar'])) {
+                                echo "<img src='../assets/img/" . htmlspecialchars($row['gambar']) . "' 
+                                          alt='" . htmlspecialchars($row['nama_barang']) . "' 
+                                          class='w-20 h-20 object-cover rounded'>";
+                            } else {
+                                echo "<div class='w-20 h-20 bg-gray-200 rounded flex items-center justify-center'>
+                                          <span class='text-gray-500'>No Image</span>
+                                          </div>";
+                            }
+                            echo "</td>";
+                            echo "<td class='px-6 py-4 whitespace-nowrap'>" . htmlspecialchars($row['nama_barang']) . "</td>";
+                            echo "<td class='px-6 py-4 whitespace-nowrap'>Rp " . number_format($row['harga'], 0, ',', '.') . "</td>";
+                            echo "<td class='px-6 py-4 whitespace-nowrap'>" . htmlspecialchars($row['stok']) . "</td>";
+                            echo "<td class='px-6 py-4'><div class='truncate max-w-xs'>" . htmlspecialchars($row['deskripsi']) . "</div></td>";
+                            echo "<td class='px-6 py-4 whitespace-nowrap'>";
+                            echo "<a href='barang_edit.php?id=" . $row['id_sepatu'] . "' class='text-blue-600 hover:text-blue-900 mr-3'>Edit</a>";
+                            echo "<a href='barang_hapus.php?id=" . $row['id_sepatu'] . "' class='text-red-600 hover:text-red-900' onclick='return confirm(\"Apakah Anda yakin ingin menghapus sepatu ini?\")'>Hapus</a>";
+                            echo "</td>";
+                            echo "</tr>";
+                        }
                     ?>
                 </tbody>
             </table>
