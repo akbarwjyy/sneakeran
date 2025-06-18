@@ -1,26 +1,89 @@
 <?php
+session_start();
 include '../config/database.php';
+
+// Cek jika admin belum login
 if (!isset($_SESSION['id_admin'])) {
     header("Location: login_admin.php");
+    exit();
 }
-$id_barang = $_GET['id'];
-$query = "SELECT * FROM barang WHERE id_barang = $id_barang";
-$result = mysqli_query($conn, $query);
-$barang = mysqli_fetch_assoc($result);
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $nama_barang = $_POST['nama_barang'];
-    $deskripsi = $_POST['deskripsi'];
-    $harga = $_POST['harga'];
-    $stok = $_POST['stok'];
-    $gambar = $_FILES['gambar']['name'] ? $_FILES['gambar']['name'] : $barang['gambar'];
-    if ($_FILES['gambar']['name']) {
-        $target = "../assets/img/" . basename($gambar);
-        move_uploaded_file($_FILES['gambar']['tmp_name'], $target);
+
+// Ambil data sepatu berdasarkan ID
+if (isset($_GET['id'])) {
+    $id = mysqli_real_escape_string($conn, $_GET['id']);
+    $query = "SELECT * FROM sepatu WHERE id_sepatu = ?";
+    $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_bind_param($stmt, "i", $id);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $sepatu = mysqli_fetch_assoc($result);
+
+    if (!$sepatu) {
+        $_SESSION['error'] = "Sepatu tidak ditemukan!";
+        header("Location: barang_list.php");
+        exit();
     }
-    $query = "UPDATE barang SET nama_barang='$nama_barang', deskripsi='$deskripsi', harga='$harga', stok='$stok', gambar='$gambar' WHERE id_barang=$id_barang";
-    mysqli_query($conn, $query);
-    header("Location: barang_lihat.php");
+} else {
+    header("Location: barang_list.php");
+    exit();
 }
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $nama_sepatu = mysqli_real_escape_string($conn, $_POST['nama_sepatu']);
+    $harga = mysqli_real_escape_string($conn, $_POST['harga']);
+    $stok = mysqli_real_escape_string($conn, $_POST['stok']);
+    $deskripsi = mysqli_real_escape_string($conn, $_POST['deskripsi']);
+
+    // Cek apakah ada file gambar baru
+    if ($_FILES['gambar']['size'] > 0) {
+        $gambar = $_FILES['gambar']['name'];
+        $gambar_tmp = $_FILES['gambar']['tmp_name'];
+        $gambar_ext = strtolower(pathinfo($gambar, PATHINFO_EXTENSION));
+        $allowed_ext = array('jpg', 'jpeg', 'png', 'webp');
+
+        if (in_array($gambar_ext, $allowed_ext)) {
+            $new_gambar = uniqid() . '.' . $gambar_ext;
+            move_uploaded_file($gambar_tmp, "../assets/img/" . $new_gambar);
+
+            // Hapus gambar lama jika ada
+            if ($sepatu['gambar'] && file_exists("../assets/img/" . $sepatu['gambar'])) {
+                unlink("../assets/img/" . $sepatu['gambar']);
+            }
+
+            $query = "UPDATE sepatu SET nama_sepatu=?, harga=?, stok=?, deskripsi=?, gambar=? WHERE id_sepatu=?";
+            $stmt = mysqli_prepare($conn, $query);
+            mysqli_stmt_bind_param($stmt, "siissi", $nama_sepatu, $harga, $stok, $deskripsi, $new_gambar, $id);
+        } else {
+            $_SESSION['error'] = "Format file tidak didukung!";
+            header("Location: barang_edit.php?id=" . $id);
+            exit();
+        }
+    } else {
+        $query = "UPDATE sepatu SET nama_sepatu=?, harga=?, stok=?, deskripsi=? WHERE id_sepatu=?";
+        $stmt = mysqli_prepare($conn, $query);
+        mysqli_stmt_bind_param($stmt, "sissi", $nama_sepatu, $harga, $stok, $deskripsi, $id);
+    }
+
+    if (mysqli_stmt_execute($stmt)) {
+        $_SESSION['message'] = "Data sepatu berhasil diupdate!";
+        header("Location: barang_list.php");
+        exit();
+    } else {
+        $_SESSION['error'] = "Gagal mengupdate data sepatu!";
+    }
+}
+$nama_barang = $_POST['nama_barang'];
+$deskripsi = $_POST['deskripsi'];
+$harga = $_POST['harga'];
+$stok = $_POST['stok'];
+$gambar = $_FILES['gambar']['name'] ? $_FILES['gambar']['name'] : $barang['gambar'];
+if ($_FILES['gambar']['name']) {
+    $target = "../assets/img/" . basename($gambar);
+    move_uploaded_file($_FILES['gambar']['tmp_name'], $target);
+}
+$query = "UPDATE barang SET nama_barang='$nama_barang', deskripsi='$deskripsi', harga='$harga', stok='$stok', gambar='$gambar' WHERE id_barang=$id_barang";
+mysqli_query($conn, $query);
+header("Location: barang_lihat.php");
 ?>
 <?php include '../layouts/header.php'; ?>
 <h1 class="text-2xl font-bold mb-4">Edit Sepatu</h1>

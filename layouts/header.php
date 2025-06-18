@@ -21,10 +21,10 @@ if (session_status() === PHP_SESSION_NONE) {
             <div>
                 <?php if (isset($_SESSION['id_user'])): ?>
                     <a href="user/riwayat.php" class="text-white mx-2">Riwayat</a>
-                    <a href="user/logout.php" class="text-white mx-2">Logout</a>
+                    <a href="logout.php" class="text-white mx-2">Logout</a>
                 <?php elseif (isset($_SESSION['id_admin'])): ?>
-                    <a href="admin/dashboard.php" class="text-white mx-2">Dashboard</a>
-                    <a href="admin/logout.php" class="text-white mx-2">Logout</a>
+                    <a href="dashboard.php" class="text-white mx-2">Dashboard</a>
+                    <a href="logout.php" class="text-white mx-2">Logout</a>
                 <?php else: ?>
                     <a href="user/login_user.php" class="text-white mx-2">Login</a>
                     <a href="user/register_user.php" class="text-white mx-2">Register</a>
