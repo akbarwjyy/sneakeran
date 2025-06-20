@@ -2,6 +2,11 @@
 session_start(); // Tambahkan session_start() di awal file
 include '../config/database.php';
 
+if (isset($_SESSION['id_user'])) {
+    header("Location: ../index.php");
+    exit();
+}
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nama = $_POST['nama'];
     $email = $_POST['email'];
@@ -14,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     }
 
-    // Periksa apakah email sudah terdaftar
+    // Periksa apakah email sudah terdaftar 
     $check_query = "SELECT id_user FROM users WHERE email = ?";
     $stmt_check = mysqli_prepare($conn, $check_query);
     mysqli_stmt_bind_param($stmt_check, "s", $email);
@@ -68,8 +73,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
                 <?php unset($_SESSION['error']); ?>
             <?php endif; ?>
-            <?php if (isset($_SESSION['message'])): // Tampilkan juga pesan sukses jika ada 
-            ?>
+
+            <?php if (isset($_SESSION['message'])): ?>
                 <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
                     <span class="block sm:inline"><?php echo $_SESSION['message']; ?></span>
                 </div>
@@ -86,26 +91,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div>
                             <input id="nama" name="nama" type="text" required
                                 class="appearance-none relative block w-full px-3 py-2 pl-10
-                                       border border-gray-300 rounded-md
-                                       placeholder-gray-500 text-gray-900
+                                       border border-gray-300 rounded-md text-gray-900
                                        focus:outline-none focus:ring-indigo-500 focus:border-indigo-500
-                                       focus:z-10 sm:text-sm"
-                                placeholder="Masukkan nama Anda">
+                                       focus:z-10 sm:text-sm">
                         </div>
                     </div>
                     <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Alamat Email</label>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
                         <div class="relative">
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <i class="fas fa-envelope text-gray-400"></i>
                             </div>
-                            <input id="email" name="email" type="email" autocomplete="email" required
+                            <input id="email" name="email" type="email" required
                                 class="appearance-none relative block w-full px-3 py-2 pl-10
-                                       border border-gray-300 rounded-md
-                                       placeholder-gray-500 text-gray-900
+                                       border border-gray-300 rounded-md text-gray-900
                                        focus:outline-none focus:ring-indigo-500 focus:border-indigo-500
-                                       focus:z-10 sm:text-sm"
-                                placeholder="Masukkan email Anda">
+                                       focus:z-10 sm:text-sm">
                         </div>
                     </div>
                     <div>
@@ -114,13 +115,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <i class="fas fa-lock text-gray-400"></i>
                             </div>
-                            <input id="password" name="password" type="password" autocomplete="new-password" required
+                            <input id="password" name="password" type="password" required
                                 class="appearance-none relative block w-full px-3 py-2 pl-10
-                                       border border-gray-300 rounded-md
-                                       placeholder-gray-500 text-gray-900
+                                       border border-gray-300 rounded-md text-gray-900
                                        focus:outline-none focus:ring-indigo-500 focus:border-indigo-500
-                                       focus:z-10 sm:text-sm"
-                                placeholder="Buat password">
+                                       focus:z-10 sm:text-sm">
                         </div>
                     </div>
                 </div>
@@ -128,18 +127,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="pt-2">
                     <button type="submit"
                         class="group relative w-full flex justify-center py-2 px-4 border border-transparent
-                               text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700
-                               focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500
+                               text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700
+                               focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
                                transition duration-150 ease-in-out">
                         <span class="absolute left-0 inset-y-0 flex items-center pl-3">
-                            <i class="fas fa-user-plus text-blue-500 group-hover:text-blue-400"></i>
+                            <i class="fas fa-user-plus text-indigo-500 group-hover:text-indigo-400"></i>
                         </span>
                         Daftar
                     </button>
                 </div>
 
                 <div class="text-sm text-center">
-                    Sudah punya akun? <a href="login_user.php" class="font-medium text-blue-600 hover:text-blue-500">Login di sini</a>
+                    Sudah punya akun? <a href="login_user.php" class="font-medium text-indigo-600 hover:text-indigo-500">Login di sini</a>
                 </div>
             </form>
         </div>
