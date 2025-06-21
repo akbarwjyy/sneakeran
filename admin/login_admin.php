@@ -61,8 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                        border border-gray-300 rounded-md
                                        placeholder-gray-500 text-gray-900
                                        focus:outline-none focus:ring-indigo-500 focus:border-indigo-500
-                                       focus:z-10 sm:text-sm"
-                                placeholder="Masukkan username">
+                                       focus:z-10 sm:text-sm">
                         </div>
                     </div>
                     <div>
@@ -76,8 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                        border border-gray-300 rounded-md
                                        placeholder-gray-500 text-gray-900
                                        focus:outline-none focus:ring-indigo-500 focus:border-indigo-500
-                                       focus:z-10 sm:text-sm"
-                                placeholder="Masukkan password">
+                                       focus:z-10 sm:text-sm">
                         </div>
                     </div>
                 </div>
