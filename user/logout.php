@@ -1,5 +1,6 @@
 <?php
-session_start(); // Sudah ada
-session_destroy(); // Sudah ada
-header("Location: login_user.php"); // Sudah benar, mengarah ke user/login_user.php
-exit();
+session_start(); // Memulai session
+session_unset(); // Menghapus semua variabel session
+session_destroy(); // Menghancurkan session
+header('Location: index.php'); // Mengarahkan ke halaman landing page
+exit(); // Keluar dari script

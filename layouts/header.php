@@ -54,7 +54,7 @@ if (isset($_SESSION['id_admin']) && !$is_admin_area) {
 </head>
 
 <body class="bg-gray-100">
-    <nav class="bg-indigo-600 p-4 shadow-md">
+    <nav class="bg-indigo-600 p-4 shadow-md sticky top-0 z-50 backdrop-blur">
         <div class="container mx-auto flex justify-between items-center">
             <a href="<?php echo $baseUrl; ?>"
                 class="text-white text-2xl font-bold hover:text-indigo-200 transition duration-300">
