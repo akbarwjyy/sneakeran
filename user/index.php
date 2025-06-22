@@ -113,21 +113,56 @@ if ($is_logged_in) {
                 <h3 class="text-xl font-bold mb-2">Layanan 24/7</h3>
                 <p class="text-gray-600">Dukungan pelanggan responsif setiap saat.</p>
             </div>
-        </div>
-
-        <!-- Featured Products Preview -->
+        </div> <!-- Featured Products Preview -->
         <div class="bg-white rounded-xl shadow-lg p-8 mb-12">
             <h2 class="text-3xl font-bold text-center mb-8">Koleksi Unggulan</h2>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div class="group relative overflow-hidden rounded-lg">
-                    <img src="../assets/img/sneaker1.png" alt="Featured Sneaker 1" class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500">
+                <div class="group relative overflow-hidden rounded-lg bg-gray-50 p-4 transition duration-300 border border-transparent hover:border-indigo-500 hover:shadow-2xl hover:scale-105 cursor-pointer">
+                    <img src="../assets/img/sneaker1.png" alt="Featured Sneaker 1" class="w-full h-64 object-contain transition-transform duration-500 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div class="absolute bottom-4 left-4 text-white">
+                        <div class="absolute bottom-4 left-4 text-black">
                             <h3 class="font-bold">Limited Edition</h3>
                             <p>Login untuk melihat</p>
                         </div>
                     </div>
                 </div>
+                <div class="group relative overflow-hidden rounded-lg bg-gray-50 p-4 transition duration-300 border border-transparent hover:border-indigo-500 hover:shadow-2xl hover:scale-105 cursor-pointer">
+                    <img src="../assets/img/sneaker1.png" alt="Featured Sneaker 1" class="w-full h-64 object-contain transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-4 left-4 text-black">
+                            <h3 class="font-bold">Limited Edition</h3>
+                            <p>Login untuk melihat</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-lg bg-gray-50 p-4 transition duration-300 border border-transparent hover:border-indigo-500 hover:shadow-2xl hover:scale-105 cursor-pointer">
+                    <img src="../assets/img/sneaker1.png" alt="Featured Sneaker 1" class="w-full h-64 object-contain transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-4 left-4 text-black">
+                            <h3 class="font-bold">Limited Edition</h3>
+                            <p>Login untuk melihat</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-lg bg-gray-50 p-4 transition duration-300 border border-transparent hover:border-indigo-500 hover:shadow-2xl hover:scale-105 cursor-pointer">
+                    <img src="../assets/img/sneaker1.png" alt="Featured Sneaker 1" class="w-full h-64 object-contain transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-4 left-4 text-black">
+                            <h3 class="font-bold">Limited Edition</h3>
+                            <p>Login untuk melihat</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-lg bg-gray-50 p-4 transition duration-300 border border-transparent hover:border-indigo-500 hover:shadow-2xl hover:scale-105 cursor-pointer">
+                    <img src="../assets/img/sneaker1.png" alt="Featured Sneaker 1" class="w-full h-64 object-contain transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-4 left-4 text-black">
+                            <h3 class="font-bold">Limited Edition</h3>
+                            <p>Login untuk melihat</p>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Repeat for other featured products -->
                 <!-- You'll need to add actual product images in these sections -->
             </div>
@@ -139,7 +174,7 @@ if ($is_logged_in) {
             <p class="mb-6">Daftar sekarang dan dapatkan informasi tentang koleksi terbaru dan penawaran eksklusif!</p>
             <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
                 <a href="register_user.php"
-                    class="bg-white text-indigo-600 hover:bg-indigo-50 px-8 py-3 rounded-lg font-semibold transition duration-300">
+                    class="border-2 border-indigo-600 bg-white text-indigo-600 hover:bg-indigo-50 px-8 py-3 rounded-lg font-semibold transition duration-300 hover:bg-indigo-600 hover:text-white">
                     Daftar Sekarang
                 </a>
             </div>
