@@ -53,7 +53,7 @@ if ($is_logged_in) {
         </div>
     <?php else: ?>
         <!-- Hero Section -->
-        <div class="relative bg-gradient-to-r from-indigo-600 to-indigo-900 text-white py-20 rounded-3xl overflow-hidden mb-12">
+        <div class="relative bg-gradient-to-r from-indigo-600 to-indigo-900 text-white py-10 rounded-3xl overflow-hidden mb-12">
             <!-- Background Pattern -->
             <div class="absolute inset-0 opacity-10">
                 <div class="absolute transform rotate-45 -translate-y-1/2 -translate-x-1/2" style="width: 1000px; height: 1000px; background: repeating-linear-gradient(45deg, #ffffff 0, #ffffff 10px, transparent 10px, transparent 20px);"></div>
