@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <i class="fas fa-user text-gray-400"></i>
                             </div>
                             <input id="nama" name="nama" type="text" required
-                                class="appearance-none relative block w-full px-3 py-2 pl-10
+                                class="appearance-none relative block w-full px-3 py-2 pl-2
                                        border border-gray-300 rounded-md text-gray-900
                                        focus:outline-none focus:ring-indigo-500 focus:border-indigo-500
                                        focus:z-10 sm:text-sm">
@@ -103,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <i class="fas fa-envelope text-gray-400"></i>
                             </div>
                             <input id="email" name="email" type="email" required
-                                class="appearance-none relative block w-full px-3 py-2 pl-10
+                                class="appearance-none relative block w-full px-3 py-2 pl-2
                                        border border-gray-300 rounded-md text-gray-900
                                        focus:outline-none focus:ring-indigo-500 focus:border-indigo-500
                                        focus:z-10 sm:text-sm">
@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <i class="fas fa-lock text-gray-400"></i>
                             </div>
                             <input id="password" name="password" type="password" required
-                                class="appearance-none relative block w-full px-3 py-2 pl-10
+                                class="appearance-none relative block w-full px-3 py-2 pl-2
                                        border border-gray-300 rounded-md text-gray-900
                                        focus:outline-none focus:ring-indigo-500 focus:border-indigo-500
                                        focus:z-10 sm:text-sm">

@@ -19,23 +19,29 @@ if ($is_logged_in) {
 <div class="container mx-auto px-4">
     <?php if ($is_logged_in): ?>
         <!-- Konten untuk user yang sudah login -->
-        <h1 class="text-2xl font-bold mb-4">Daftar Sepatu</h1>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <h1 class="text-3xl font-extrabold mb-8 text-center text-indigo-700 tracking-tight animate-fade-in">Koleksi Sepatu Terbaru</h1>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             <?php if (mysqli_num_rows($result) > 0): ?>
                 <?php while ($row = mysqli_fetch_assoc($result)): ?>
-                    <div class="bg-white p-4 rounded shadow-md">
-                        <img src="../assets/img/<?php echo htmlspecialchars($row['gambar']); ?>"
-                            alt="<?php echo htmlspecialchars($row['nama_barang']); ?>"
-                            class="w-full h-48 object-cover rounded">
-
-                        <h2 class="text-xl font-bold mt-2"><?php echo htmlspecialchars($row['nama_barang']); ?></h2>
-                        <p class="text-gray-600"><?php echo htmlspecialchars(substr($row['deskripsi'], 0, 100)); ?>...</p>
-                        <p class="text-indigo-600 font-bold">Rp <?php echo number_format($row['harga'], 0, ',', '.'); ?></p>
-                        <p>Stok: <?php echo htmlspecialchars($row['stok']); ?></p>
-
+                    <div class="group bg-white p-5 rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-2 hover:scale-105 relative overflow-hidden animate-fade-in">
+                        <div class="absolute top-4 right-4 z-10">
+                            <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-indigo-100 text-indigo-700 shadow">
+                                Stok: <?php echo htmlspecialchars($row['stok']); ?>
+                            </span>
+                        </div>
+                        <div class="relative h-48 flex items-center justify-center mb-4">
+                            <img src="../assets/img/<?php echo htmlspecialchars($row['gambar']); ?>"
+                                alt="<?php echo htmlspecialchars($row['nama_barang']); ?>"
+                                class="max-h-44 w-auto object-contain drop-shadow-xl group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <h2 class="text-lg font-bold mb-1 text-gray-900 group-hover:text-indigo-700 transition"> <?php echo htmlspecialchars($row['nama_barang']); ?> </h2>
+                        <p class="text-gray-600 mb-2 text-sm"> <?php echo htmlspecialchars(substr($row['deskripsi'], 0, 80)); ?>...</p>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-indigo-600 font-bold text-xl">Rp <?php echo number_format($row['harga'], 0, ',', '.'); ?></span>
+                        </div>
                         <a href="checkout.php?id=<?php echo htmlspecialchars($row['id_barang']); ?>"
-                            class="bg-indigo-600 text-white p-2 rounded mt-2 inline-block hover:bg-indigo-700 transition">
-                            Beli Sekarang
+                            class="w-full flex justify-center items-center gap-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-2 rounded-lg font-semibold shadow hover:from-indigo-700 hover:to-purple-700 hover:scale-105 transition-all duration-300">
+                            <i class="fas fa-shopping-cart"></i> Beli Sekarang
                         </a>
                     </div>
                 <?php endwhile; ?>
@@ -54,7 +60,7 @@ if ($is_logged_in) {
             </div>
 
             <div class="relative container mx-auto px-6 flex flex-col lg:flex-row items-center justify-between">
-                <div class="lg:w-1/2 text-center lg:text-left mb-10 lg:mb-0">
+                <div class="lg:w-1/1 text-center lg:text-left mb-10 lg:mb-0">
                     <h1 class="text-4xl lg:text-5xl font-extrabold mb-6 leading-tight">
                         Temukan Gaya Sempurna di Setiap Langkah
                     </h1>
