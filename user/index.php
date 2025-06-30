@@ -133,7 +133,7 @@ if ($is_logged_in) {
                     </div>
                 </div>
                 <div class="group relative overflow-hidden rounded-lg bg-gray-50 p-4 transition duration-300 border border-transparent hover:border-indigo-500 hover:shadow-2xl hover:scale-105 cursor-pointer">
-                    <img src="../assets/img/sneaker1.png" alt="Featured Sneaker 1" class="w-full h-64 object-contain transition-transform duration-500 group-hover:scale-110">
+                    <img src="../assets/img/sneaker2.png" alt="Featured Sneaker 1" class="w-full h-64 object-contain transition-transform duration-500 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <div class="absolute bottom-4 left-4 text-black">
                             <h3 class="font-bold">Limited Edition</h3>
@@ -142,7 +142,7 @@ if ($is_logged_in) {
                     </div>
                 </div>
                 <div class="group relative overflow-hidden rounded-lg bg-gray-50 p-4 transition duration-300 border border-transparent hover:border-indigo-500 hover:shadow-2xl hover:scale-105 cursor-pointer">
-                    <img src="../assets/img/sneaker1.png" alt="Featured Sneaker 1" class="w-full h-64 object-contain transition-transform duration-500 group-hover:scale-110">
+                    <img src="../assets/img/sneaker3.png" alt="Featured Sneaker 1" class="w-full h-64 object-contain transition-transform duration-500 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <div class="absolute bottom-4 left-4 text-black">
                             <h3 class="font-bold">Limited Edition</h3>
@@ -151,7 +151,7 @@ if ($is_logged_in) {
                     </div>
                 </div>
                 <div class="group relative overflow-hidden rounded-lg bg-gray-50 p-4 transition duration-300 border border-transparent hover:border-indigo-500 hover:shadow-2xl hover:scale-105 cursor-pointer">
-                    <img src="../assets/img/sneaker1.png" alt="Featured Sneaker 1" class="w-full h-64 object-contain transition-transform duration-500 group-hover:scale-110">
+                    <img src="../assets/img/sneaker4.png" alt="Featured Sneaker 1" class="w-full h-64 object-contain transition-transform duration-500 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <div class="absolute bottom-4 left-4 text-black">
                             <h3 class="font-bold">Limited Edition</h3>
@@ -159,16 +159,6 @@ if ($is_logged_in) {
                         </div>
                     </div>
                 </div>
-                <div class="group relative overflow-hidden rounded-lg bg-gray-50 p-4 transition duration-300 border border-transparent hover:border-indigo-500 hover:shadow-2xl hover:scale-105 cursor-pointer">
-                    <img src="../assets/img/sneaker1.png" alt="Featured Sneaker 1" class="w-full h-64 object-contain transition-transform duration-500 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div class="absolute bottom-4 left-4 text-black">
-                            <h3 class="font-bold">Limited Edition</h3>
-                            <p>Login untuk melihat</p>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Repeat for other featured products -->
                 <!-- You'll need to add actual product images in these sections -->
             </div>
