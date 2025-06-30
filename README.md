@@ -40,13 +40,6 @@ Sneakeran adalah aplikasi web manajemen toko sepatu yang dibangun menggunakan PH
 - **Frontend:**
   - HTML5
   - CSS3 (Tailwind CSS)
-  - JavaScript ES6+
-  - AJAX untuk interaksi dinamis
-- **UI/UX:**
-  - Font Awesome Icons
-  - Custom Animations
-  - Responsive Images
-  - Modern Color Schemes
 - **Server:** Laragon/Apache
 - **Tools:**
   - Git untuk version control
@@ -102,10 +95,10 @@ sneakeran/
 
    ```sql
    # Create database
-   CREATE DATABASE sneakeran;
+   CREATE DATABASE db_sneakeran;
 
    # Import schema
-   mysql -u username -p sneakeran < db.sql
+   mysql -u username -p db_sneakeran < db.sql
    ```
 
 3. **Konfigurasi Aplikasi**
@@ -113,52 +106,14 @@ sneakeran/
    - Sesuaikan `config/database.php`:
      ```php
      $host = 'localhost';
-     $username = 'your_username';
-     $password = 'your_password';
-     $database = 'sneakeran';
+     $username = 'root';
+     $password = '';
+     $database = 'db_sneakeran';
      ```
 
 4. **Akses Aplikasi**
-   - Admin: `http://localhost/sneakeran/admin/login.php`
-   - User: `http://localhost/sneakeran/user/login.php`
-
-## 🔐 Keamanan
-
-- **Database:**
-  - Prepared statements untuk prevent SQL injection
-  - Parameter binding untuk query
-  - Input sanitization
-- **Authentication:**
-  - Password hashing dengan bcrypt
-  - Session management yang aman
-  - Remember-me functionality dengan secure tokens
-- **Forms:**
-  - CSRF protection pada semua form
-  - Validasi input client & server side
-  - File upload validation
-- **General:**
-  - XSS prevention
-  - Error handling yang aman
-  - Secure headers
-  - Rate limiting untuk login attempts
-
-## 🎨 UI/UX Features
-
-- **Design Responsif:**
-  - Mobile-first approach
-  - Breakpoints yang optimal
-  - Flexbox dan Grid layout
-- **Interaktivitas:**
-  - Smooth scrolling
-  - Hover effects
-  - Loading states
-  - Animasi transisi
-- **User Experience:**
-  - Intuitive navigation
-  - Clear error messages
-  - Success feedback
-  - Loading indicators
-  - Form validation hints
+   - Admin: `http://localhost/sneakeran/admin/login_admin.php`
+   - User: `http://localhost/sneakeran/user/index.php`
 
 ## 🔄 Workflow Development
 
