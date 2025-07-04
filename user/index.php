@@ -85,9 +85,27 @@ if ($is_logged_in) {
                 </div>
                 <div class="lg:w-1/2 relative">
                     <img src="../assets/img/hero-sneaker.png" alt="Sneaker Collection"
-                        class="mx-auto transform hover:rotate-12 transition-transform duration-500"
+                        class="mx-auto hover:animate-none transition-all duration-500 sneaker-bounce"
                         style="max-width: 500px;">
                 </div>
+
+                <style>
+                    @keyframes smooth-bounce {
+
+                        0%,
+                        100% {
+                            transform: translateY(0);
+                        }
+
+                        50% {
+                            transform: translateY(-20px);
+                        }
+                    }
+
+                    .sneaker-bounce {
+                        animation: smooth-bounce 2s ease-in-out infinite;
+                    }
+                </style>
             </div>
         </div>
 
