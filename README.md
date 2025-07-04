@@ -30,57 +30,6 @@ Sneakeran adalah aplikasi web manajemen toko sepatu yang dibangun menggunakan PH
 - Efek interaktif dan animasi pada semua elemen
 - Responsive design untuk semua device
 
-<<<<<<< HEAD
-## 🛠️ Teknologi yang Digunakan
-
-- **Backend:**
-  - PHP 7.4+
-  - MySQL 5.7+
-  - Session Management
-  - Secure Authentication
-- **Frontend:**
-  - HTML5
-  - CSS3 (Tailwind CSS)
-- **Server:** Laragon/Apache
-- **Tools:**
-  - Git untuk version control
-  - VS Code dengan extensions
-  - MySQL Workbench
-
-## 📁 Struktur Project
-
-```
-sneakeran/
-├── admin/                 # Area admin
-│   ├── login_admin.php    # Login admin
-│   ├── dashboard.php      # Dashboard admin
-│   ├── barang_tambah.php  # Tambah barang
-│   ├── barang_edit.php    # Edit barang
-│   ├── barang_hapus.php   # Hapus barang
-│   └── barang_lihat.php   # Lihat barang
-│   └── barang_list.php    # List barang
-│   └── logout.php         # Logout user
-├── assets/                # Asset statis
-│   ├── css/              # Stylesheet
-│   ├── img/              # Images
-├── config/
-│   └── database.php      # Konfigurasi database
-├── layouts/
-│   ├── header.php        # Header template
-│   └── footer.php        # Footer template
-├── user/                 # Area user
-|   ├── checkout.php      # Chechkout barang
-│   ├── register_user.php # Registrasi user
-│   ├── login_user.php    # Login user
-│   ├── logout.php        # Logout user
-|   ├── riwayat.php       # Riwayat pembelian barang
-│   └── index.php         # Landing page
-|── db.sql                # Schema database
-└── README.md             # Informasi project
-```
-
-=======
->>>>>>> aadd1a9 (update README.md)
 ## ⚙️ Instalasi
 
 1. **Persiapan Server**
@@ -109,47 +58,11 @@ sneakeran/
    - Sesuaikan `config/database.php`:
      ```php
      $host = 'localhost';
-<<<<<<< HEAD
      $username = 'root';
-=======
-     $username = 'your_username';
->>>>>>> aadd1a9 (update README.md)
      $password = '';
      $database = 'db_sneakeran';
      ```
 
 4. **Akses Aplikasi**
    - Admin: `http://localhost/sneakeran/admin/login_admin.php`
-<<<<<<< HEAD
    - User: `http://localhost/sneakeran/user/index.php`
-
-## 🔄 Workflow Development
-
-1. **Setup Local:**
-   - Clone repo
-   - Install dependencies
-   - Setup database
-2. **Development:**
-   - Create feature branch
-   - Implement changes
-   - Test thoroughly
-3. **Testing:**
-   - Unit testing
-   - Integration testing
-   - UI/UX testing
-4. **Deployment:**
-   - Merge to main
-   - Deploy to staging
-   - Final testing
-   - Deploy to production
-
-## 📝 Contributing
-
-1. Fork repository
-2. Create feature branch (`git checkout -b feature/NewFeature`)
-3. Commit changes (`git commit -am 'Add NewFeature'`)
-4. Push to branch (`git push origin feature/NewFeature`)
-5. Create Pull Request
-=======
-   - User: `http://localhost/sneakeran/user/login_user.php`
->>>>>>> aadd1a9 (update README.md)
