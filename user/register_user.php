@@ -1,12 +1,16 @@
 <?php
-session_start(); // Tambahkan session_start() di awal file
+// Memulai session untuk mengakses data session yang ada
+session_start();
+// Mengimpor file konfigurasi database untuk koneksi MySQL
 include '../config/database.php';
 
+// REDIRECT PROTECTION: Jika user sudah login, langsung ke halaman index
 if (isset($_SESSION['id_user'])) {
     header("Location: ../index.php");
     exit();
 }
 
+// INISIALISASI VARIABEL: Untuk menyimpan pesan error
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nama = $_POST['nama'];
     $email = $_POST['email'];
@@ -26,33 +30,39 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     mysqli_stmt_execute($stmt_check);
     mysqli_stmt_store_result($stmt_check);
 
+    // Jika ada hasil, berarti email sudah terdaftar
     if (mysqli_stmt_num_rows($stmt_check) > 0) {
         $_SESSION['error'] = "Email ini sudah terdaftar. Silakan gunakan email lain atau login.";
         header("Location: register_user.php");
         exit();
     }
+    // Tutup prepared statement untuk pengecekan email
     mysqli_stmt_close($stmt_check);
 
     // Menggunakan prepared statement untuk INSERT agar lebih aman
     $query = "INSERT INTO users (nama, email, password) VALUES (?, ?, ?)";
     $stmt = mysqli_prepare($conn, $query);
 
+    // Cek apakah query berhasil disiapkan
     if ($stmt) {
         mysqli_stmt_bind_param($stmt, "sss", $nama, $email, $password);
         if (mysqli_stmt_execute($stmt)) {
             $_SESSION['message'] = "Registrasi berhasil! Silakan login.";
             header("Location: login_user.php");
             exit();
+            // Jika eksekusi berhasil, redirect ke halaman login
         } else {
             $_SESSION['error'] = "Terjadi kesalahan saat registrasi: " . mysqli_error($conn);
         }
+        // Tutup prepared statement setelah eksekusi
         mysqli_stmt_close($stmt);
+        // Jika eksekusi gagal, set pesan error
     } else {
         $_SESSION['error'] = "Gagal menyiapkan query registrasi: " . mysqli_error($conn);
     }
 }
 ?>
-
+<!-- Mengimpor template header yang berisi navigasi dan CSS -->
 <?php include '../layouts/header.php'; ?>
 
 <div class="min-h-screen flex flex-col">
@@ -66,14 +76,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     Daftar akun baru Anda
                 </p>
             </div>
-
+            <!-- NOTIFIKASI ERROR: Menampilkan pesan error jika ada -->
             <?php if (isset($_SESSION['error'])): ?>
                 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
                     <span class="block sm:inline"><?php echo $_SESSION['error']; ?></span>
                 </div>
                 <?php unset($_SESSION['error']); ?>
             <?php endif; ?>
-
+            <!-- NOTIFIKASI PESAN: Menampilkan pesan sukses jika ada -->
             <?php if (isset($_SESSION['message'])): ?>
                 <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
                     <span class="block sm:inline"><?php echo $_SESSION['message']; ?></span>
@@ -143,6 +153,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </form>
         </div>
     </div>
-
+    <!-- Mengimpor template footer yang berisi script dan penutup HTML -->
     <?php include '../layouts/footer.php'; ?>
 </div>

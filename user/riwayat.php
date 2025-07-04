@@ -1,5 +1,6 @@
 <?php
 session_start(); // Pastikan session dimulai di awal file
+// Mengimpor koneksi database
 include '../config/database.php';
 
 // Cek jika user belum login, redirect ke halaman login
@@ -8,35 +9,41 @@ if (!isset($_SESSION['id_user'])) {
     exit();
 }
 
+// Ambil ID user dari session
 $id_user = $_SESSION['id_user'];
 
 // Ambil riwayat transaksi menggunakan prepared statement untuk keamanan
 $query = "SELECT t.*, b.nama_barang, b.gambar FROM transaksi t JOIN barang b ON t.id_barang = b.id_barang WHERE t.id_user = ? ORDER BY t.tanggal_transaksi DESC";
 $stmt = mysqli_prepare($conn, $query);
+// Cek apakah statement berhasil disiapkan
 if (!$stmt) {
     die("Gagal menyiapkan statement riwayat: " . mysqli_error($conn));
 }
+// Bind parameter untuk menghindari SQL injection
 mysqli_stmt_bind_param($stmt, "i", $id_user);
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
-
 ?>
+<!-- Mengimpor template header yang berisi navigasi dan CSS -->
 <?php include '../layouts/header.php'; ?>
 <div class="min-h-screen flex flex-col bg-gray-50">
     <div class="flex-grow container mx-auto px-4 py-10 flex flex-col items-center justify-center">
         <h1 class="text-3xl font-bold text-gray-800 mb-8 text-center tracking-tight">Riwayat Pembelian</h1>
+        <!-- NOTIFIKASI SYSTEM: Menampilkan pesan sukses atau error dari session -->
         <?php if (isset($_SESSION['message'])): ?>
             <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4 rounded-lg shadow-sm w-full max-w-3xl">
                 <?php echo $_SESSION['message'];
                 unset($_SESSION['message']); ?>
             </div>
         <?php endif; ?>
+        <!-- Jika ada pesan error -->
         <?php if (isset($_SESSION['error'])): ?>
             <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4 rounded-lg shadow-sm w-full max-w-3xl">
                 <?php echo $_SESSION['error'];
                 unset($_SESSION['error']); ?>
             </div>
         <?php endif; ?>
+
         <div class="w-full max-w-4xl bg-white rounded-xl shadow-lg overflow-x-auto">
             <table class="w-full table-auto">
                 <thead>
@@ -87,4 +94,5 @@ $result = mysqli_stmt_get_result($stmt);
         </div>
     </div>
 </div>
+<!-- Mengimpor template footer yang berisi script dan penutup HTML -->
 <?php include '../layouts/footer.php'; ?>

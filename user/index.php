@@ -1,19 +1,24 @@
 <?php
+// Memulai session untuk mengakses data session yang ada
 session_start();
+// Mengimpor file konfigurasi database untuk koneksi MySQL
 include '../config/database.php';
 
+// PROTEKSI AKSES: Memastikan hanya user yang sudah login yang bisa mengakses halaman ini
 $is_logged_in = isset($_SESSION['id_user']);
 
+// Jika user sudah login, ambil data barang dari database
 if ($is_logged_in) {
     $query = "SELECT * FROM barang";
     $result = mysqli_query($conn, $query);
 
+    // Cek apakah query berhasil
     if (!$result) {
         die("Error mengambil data barang: " . mysqli_error($conn));
     }
 }
 ?>
-
+<!-- Mengimpor template header yang berisi navigasi dan CSS -->
 <?php include '../layouts/header.php'; ?>
 
 <div class="container mx-auto px-4">

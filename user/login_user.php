@@ -1,12 +1,16 @@
 <?php
+// Memulai session untuk mengakses data session
 session_start();
+// Mengimpor file konfigurasi database untuk koneksi MySQL
 include '../config/database.php';
 
+// REDIRECT PROTECTION: Jika user sudah login, langsung ke halaman index
 if (isset($_SESSION['id_user'])) {
     header("Location: ../index.php");
     exit();
 }
 
+// INISIALISASI VARIABEL: Untuk menyimpan pesan error
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -18,17 +22,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $result = mysqli_stmt_get_result($stmt);
     $user = mysqli_fetch_assoc($result);
 
+    // Pastikan user ditemukan sebelum memeriksa password
     if ($user && password_verify($password, $user['password'])) {
         $_SESSION['id_user'] = $user['id_user'];
         $_SESSION['nama'] = $user['nama'];
         header("Location: ../index.php");
         exit();
+        // Jika password tidak cocok, set pesan error
     } else {
         $_SESSION['error'] = "Email atau password salah!";
     }
 }
 ?>
-
+<!-- Mengimpor template header yang berisi navigasi dan CSS -->
 <?php include '../layouts/header.php'; ?>
 
 <div class="min-h-screen flex flex-col">
@@ -42,14 +48,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     Silakan masuk ke akun Anda
                 </p>
             </div>
-
+            <!-- NOTIFIKASI ERROR: Menampilkan pesan error jika ada -->
             <?php if (isset($_SESSION['error'])): ?>
                 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
                     <span class="block sm:inline"><?php echo $_SESSION['error']; ?></span>
                 </div>
                 <?php unset($_SESSION['error']); ?>
             <?php endif; ?>
-
+            <!-- NOTIFIKASI PESAN: Menampilkan pesan sukses jika ada -->
             <?php if (isset($_SESSION['message'])): ?>
                 <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
                     <span class="block sm:inline"><?php echo $_SESSION['message']; ?></span>
@@ -104,6 +110,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </form>
         </div>
     </div>
-
+    <!-- Mengimpor template footer yang berisi script dan penutup HTML -->
     <?php include '../layouts/footer.php'; ?>
 </div>
