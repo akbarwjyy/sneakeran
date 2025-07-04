@@ -30,6 +30,7 @@ Sneakeran adalah aplikasi web manajemen toko sepatu yang dibangun menggunakan PH
 - Efek interaktif dan animasi pada semua elemen
 - Responsive design untuk semua device
 
+<<<<<<< HEAD
 ## 🛠️ Teknologi yang Digunakan
 
 - **Backend:**
@@ -78,6 +79,8 @@ sneakeran/
 └── README.md             # Informasi project
 ```
 
+=======
+>>>>>>> aadd1a9 (update README.md)
 ## ⚙️ Instalasi
 
 1. **Persiapan Server**
@@ -106,13 +109,18 @@ sneakeran/
    - Sesuaikan `config/database.php`:
      ```php
      $host = 'localhost';
+<<<<<<< HEAD
      $username = 'root';
+=======
+     $username = 'your_username';
+>>>>>>> aadd1a9 (update README.md)
      $password = '';
      $database = 'db_sneakeran';
      ```
 
 4. **Akses Aplikasi**
    - Admin: `http://localhost/sneakeran/admin/login_admin.php`
+<<<<<<< HEAD
    - User: `http://localhost/sneakeran/user/index.php`
 
 ## 🔄 Workflow Development
@@ -142,3 +150,6 @@ sneakeran/
 3. Commit changes (`git commit -am 'Add NewFeature'`)
 4. Push to branch (`git push origin feature/NewFeature`)
 5. Create Pull Request
+=======
+   - User: `http://localhost/sneakeran/user/login_user.php`
+>>>>>>> aadd1a9 (update README.md)
